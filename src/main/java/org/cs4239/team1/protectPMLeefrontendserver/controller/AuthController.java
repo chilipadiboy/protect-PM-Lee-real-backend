@@ -3,6 +3,7 @@ package org.cs4239.team1.protectPMLeefrontendserver.controller;
 import java.net.URI;
 import java.util.Collections;
 import java.util.HashSet;
+import java.util.stream.Collectors;
 
 import javax.validation.Valid;
 
@@ -64,12 +65,12 @@ public class AuthController {
 
     @PostMapping("/signup")
     public ResponseEntity<?> registerUser(@Valid @RequestBody SignUpRequest signUpRequest) {
-        if(userRepository.existsByNric(signUpRequest.getNric())) {
+        if (userRepository.existsByNric(signUpRequest.getNric())) {
             return new ResponseEntity<>(new ApiResponse(false, "Nric is already taken!"),
                     HttpStatus.BAD_REQUEST);
         }
 
-        if(userRepository.existsByEmail(signUpRequest.getEmail())) {
+        if (userRepository.existsByEmail(signUpRequest.getEmail())) {
             return new ResponseEntity<>(new ApiResponse(false, "Email Address already in use!"),
                     HttpStatus.BAD_REQUEST);
         }
@@ -84,7 +85,10 @@ public class AuthController {
                 signUpRequest.getAge(),
                 Gender.valueOf(signUpRequest.getGender().toUpperCase()),
                 passwordEncoder.encode(signUpRequest.getPassword()),
-                new HashSet<>(Collections.singletonList(Role.PATIENT))
+                new HashSet<>(signUpRequest.getRoles().stream()
+                        .map(String::toUpperCase)
+                        .map(Role::valueOf)
+                        .collect(Collectors.toList()))
         );
 
         User result = userRepository.save(user);
