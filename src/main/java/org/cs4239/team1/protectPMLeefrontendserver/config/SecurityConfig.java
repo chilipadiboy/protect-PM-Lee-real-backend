@@ -1,5 +1,6 @@
 package org.cs4239.team1.protectPMLeefrontendserver.config;
 
+import org.cs4239.team1.protectPMLeefrontendserver.NricPasswordRoleAuthenticationProvider;
 import org.cs4239.team1.protectPMLeefrontendserver.security.CustomUserDetailsService;
 import org.cs4239.team1.protectPMLeefrontendserver.security.JwtAuthenticationEntryPoint;
 import org.cs4239.team1.protectPMLeefrontendserver.security.JwtAuthenticationFilter;
@@ -8,6 +9,7 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.http.HttpMethod;
 import org.springframework.security.authentication.AuthenticationManager;
+import org.springframework.security.authentication.AuthenticationProvider;
 import org.springframework.security.config.BeanIds;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
@@ -42,8 +44,12 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     @Override
     public void configure(AuthenticationManagerBuilder authenticationManagerBuilder) throws Exception {
         authenticationManagerBuilder
-                .userDetailsService(customUserDetailsService)
-                .passwordEncoder(passwordEncoder());
+                .authenticationProvider(authProvider());
+    }
+
+    @Bean
+    public AuthenticationProvider authProvider() {
+        return new NricPasswordRoleAuthenticationProvider(passwordEncoder(), customUserDetailsService);
     }
 
     @Bean(BeanIds.AUTHENTICATION_MANAGER)

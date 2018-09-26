@@ -5,8 +5,10 @@ import java.util.Collections;
 import java.util.HashSet;
 import java.util.stream.Collectors;
 
+import javax.servlet.http.HttpServletResponse;
 import javax.validation.Valid;
 
+import org.cs4239.team1.protectPMLeefrontendserver.NricPasswordRoleAuthenticationToken;
 import org.cs4239.team1.protectPMLeefrontendserver.model.Gender;
 import org.cs4239.team1.protectPMLeefrontendserver.model.Role;
 import org.cs4239.team1.protectPMLeefrontendserver.model.User;
@@ -49,11 +51,11 @@ public class AuthController {
 
     @PostMapping("/signin")
     public ResponseEntity<?> authenticateUser(@Valid @RequestBody LoginRequest loginRequest) {
-
         Authentication authentication = authenticationManager.authenticate(
-                new UsernamePasswordAuthenticationToken(
+                new NricPasswordRoleAuthenticationToken(
                         loginRequest.getNric(),
-                        loginRequest.getPassword()
+                        loginRequest.getPassword(),
+                        loginRequest.getRole()
                 )
         );
 
