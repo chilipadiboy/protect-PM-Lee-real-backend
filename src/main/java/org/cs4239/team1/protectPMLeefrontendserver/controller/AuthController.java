@@ -8,7 +8,7 @@ import java.util.stream.Collectors;
 import javax.servlet.http.HttpServletResponse;
 import javax.validation.Valid;
 
-import org.cs4239.team1.protectPMLeefrontendserver.NricPasswordRoleAuthenticationToken;
+import org.cs4239.team1.protectPMLeefrontendserver.security.NricPasswordRoleAuthenticationToken;
 import org.cs4239.team1.protectPMLeefrontendserver.model.Gender;
 import org.cs4239.team1.protectPMLeefrontendserver.model.Role;
 import org.cs4239.team1.protectPMLeefrontendserver.model.User;

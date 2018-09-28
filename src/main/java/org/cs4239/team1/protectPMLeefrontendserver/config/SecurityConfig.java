@@ -1,6 +1,6 @@
 package org.cs4239.team1.protectPMLeefrontendserver.config;
 
-import org.cs4239.team1.protectPMLeefrontendserver.NricPasswordRoleAuthenticationProvider;
+import org.cs4239.team1.protectPMLeefrontendserver.security.NricPasswordRoleAuthenticationProvider;
 import org.cs4239.team1.protectPMLeefrontendserver.security.CustomUserDetailsService;
 import org.cs4239.team1.protectPMLeefrontendserver.security.JwtAuthenticationEntryPoint;
 import org.cs4239.team1.protectPMLeefrontendserver.security.JwtAuthenticationFilter;
