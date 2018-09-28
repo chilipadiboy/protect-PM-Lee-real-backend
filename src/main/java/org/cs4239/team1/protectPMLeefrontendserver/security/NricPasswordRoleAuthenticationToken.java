@@ -1,4 +1,4 @@
-package org.cs4239.team1.protectPMLeefrontendserver;
+package org.cs4239.team1.protectPMLeefrontendserver.security;
 
 import java.util.Collection;
 

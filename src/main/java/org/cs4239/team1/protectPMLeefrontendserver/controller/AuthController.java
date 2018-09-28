@@ -1,14 +1,12 @@
 package org.cs4239.team1.protectPMLeefrontendserver.controller;
 
 import java.net.URI;
-import java.util.Collections;
 import java.util.HashSet;
 import java.util.stream.Collectors;
 
-import javax.servlet.http.HttpServletResponse;
 import javax.validation.Valid;
 
-import org.cs4239.team1.protectPMLeefrontendserver.NricPasswordRoleAuthenticationToken;
+import org.cs4239.team1.protectPMLeefrontendserver.security.NricPasswordRoleAuthenticationToken;
 import org.cs4239.team1.protectPMLeefrontendserver.model.Gender;
 import org.cs4239.team1.protectPMLeefrontendserver.model.Role;
 import org.cs4239.team1.protectPMLeefrontendserver.model.User;
@@ -19,7 +17,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationManager;
-import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.password.PasswordEncoder;
